@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/core/domain/entities/media_details.dart';
+import 'media_details.dart';
 
 class Media extends Equatable {
   final int tmdbId;

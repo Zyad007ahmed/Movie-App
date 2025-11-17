@@ -19,4 +19,10 @@ class ApiConstants {
   static const String stillPlaceHolder =
       'https://popcornsg.s3.amazonaws.com/gallery/1577405144-six-year.png';
 
+  // movies paths
+  static String nowPlayingMoviesPath = '/movie/now_playing';
+  static String popularMoviesPath = '/movie/popular';
+  static String topRatedMoviesPath = '/movie/top_rated';
+  static String movieDetailsPath(int movieId) => '/movie/$movieId';
+
 }

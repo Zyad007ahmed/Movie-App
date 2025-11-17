@@ -1,5 +1,4 @@
-import 'package:movie_app/core/utils/functions.dart';
-
+import '../../../core/utils/functions.dart';
 import '../../domain/entities/cast.dart';
 
 class CastModel extends Cast {

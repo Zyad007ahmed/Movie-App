@@ -1,9 +1,21 @@
-import 'package:movie_app/core/network/api_constants.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import '../network/api_constants.dart';
+import '../presentation/components/overview_section.dart';
+import '../presentation/components/section_listview.dart';
+import '../presentation/components/section_listview_card.dart';
+import '../presentation/components/section_title.dart';
+import '../resources/app_colors.dart';
+import '../resources/app_routes.dart';
 
-String getProfileUrl(String? path){
-  if(path != null){
+import '../domain/entities/media.dart';
+import '../resources/app_strings.dart';
+import '../resources/app_values.dart';
+
+String getProfileUrl(String? path) {
+  if (path != null) {
     return ApiConstants.baseProfileUrl + path;
-  }else{
+  } else {
     return ApiConstants.castPlaceHolder;
   }
 }
@@ -166,5 +178,69 @@ String getElapsedTime(String date) {
     return '${minutes}min';
   } else {
     return 'Now';
+  }
+}
+
+void getCustomBottomSheet({
+  required BuildContext context,
+  required Widget child,
+}) {
+  final size = MediaQuery.of(context).size.height;
+  showModalBottomSheet(
+    context: context,
+    backgroundColor: AppColors.secondaryBackground,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(AppSize.s20)),
+    ),
+    builder: (context) {
+      return SizedBox(height: size * 0.5, child: child);
+    },
+  );
+}
+
+void navigateToDetailsView(BuildContext context, Media media) {
+  if (media.isMovie) {
+    context.pushNamed(
+      AppRoutes.movieDetailsRoute,
+      pathParameters: {'movieId': media.tmdbId.toString()},
+    );
+  } else {
+    context.pushNamed(
+      AppRoutes.tvShowDetailsRoute,
+      pathParameters: {'tvShowId': media.tmdbId.toString()},
+    );
+  }
+}
+
+Widget getOverviewSection(String overview) {
+  if (overview.isNotEmpty) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SectionTitle(title: AppStrings.story),
+        OverviewSection(overview: overview),
+      ],
+    );
+  } else {
+    return const SizedBox();
+  }
+}
+
+Widget getSimilarSection(List<Media>? similar) {
+  if (similar != null && similar.isNotEmpty) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SectionTitle(title: AppStrings.similar),
+        SectionListView(
+          height: AppSize.s240,
+          itemCount: similar.length,
+          itemBuilder: (context, index) =>
+              SectionListViewCard(media: similar[index]),
+        ),
+      ],
+    );
+  } else {
+    return const SizedBox();
   }
 }

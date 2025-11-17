@@ -1,4 +1,4 @@
-import 'package:movie_app/core/domain/entities/media_details.dart';
+import '../../../core/domain/entities/media_details.dart';
 
 import '../../../core/utils/functions.dart';
 import 'cast_model.dart';

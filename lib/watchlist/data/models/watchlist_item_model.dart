@@ -5,7 +5,7 @@ import '../../../core/domain/entities/media.dart';
 part 'watchlist_item_model.g.dart';
 
 @HiveType(typeId: 1)
-class WatchlistItemMoodel {
+class WatchlistItemModel {
   @HiveField(0)
   final int tmdbId;
   @HiveField(1)
@@ -23,7 +23,7 @@ class WatchlistItemMoodel {
   @HiveField(7)
   final bool isMovie;
 
-  WatchlistItemMoodel({
+  WatchlistItemModel({
     required this.tmdbId,
     required this.title,
     required this.posterUrl,
@@ -34,8 +34,8 @@ class WatchlistItemMoodel {
     required this.isMovie,
   });
 
-  factory WatchlistItemMoodel.fromEntity(Media media) {
-    return WatchlistItemMoodel(
+  factory WatchlistItemModel.fromEntity(Media media) {
+    return WatchlistItemModel(
       tmdbId: media.tmdbId,
       title: media.title,
       posterUrl: media.posterUrl,

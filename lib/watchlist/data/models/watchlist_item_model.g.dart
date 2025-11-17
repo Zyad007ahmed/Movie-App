@@ -6,17 +6,17 @@ part of 'watchlist_item_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class WatchlistItemMoodelAdapter extends TypeAdapter<WatchlistItemMoodel> {
+class WatchlistItemMoodelAdapter extends TypeAdapter<WatchlistItemModel> {
   @override
   final int typeId = 1;
 
   @override
-  WatchlistItemMoodel read(BinaryReader reader) {
+  WatchlistItemModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return WatchlistItemMoodel(
+    return WatchlistItemModel(
       tmdbId: fields[0] as int,
       title: fields[1] as String,
       posterUrl: fields[2] as String,
@@ -29,7 +29,7 @@ class WatchlistItemMoodelAdapter extends TypeAdapter<WatchlistItemMoodel> {
   }
 
   @override
-  void write(BinaryWriter writer, WatchlistItemMoodel obj) {
+  void write(BinaryWriter writer, WatchlistItemModel obj) {
     writer
       ..writeByte(8)
       ..writeByte(0)

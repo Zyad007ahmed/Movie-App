@@ -1,4 +1,4 @@
-import 'package:movie_app/core/domain/entities/media.dart';
+import '../../../core/domain/entities/media.dart';
 
 import '../../../core/utils/functions.dart';
 

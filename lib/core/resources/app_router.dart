@@ -1,6 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:movie_app/core/presentation/pages/main_page.dart';
-import 'package:movie_app/core/resources/app_routes.dart';
+import '../presentation/pages/main_page.dart';
+import 'app_routes.dart';
+import '../../movies/presentation/views/movie_details_view.dart';
+import '../../movies/presentation/views/popular_movies_view.dart';
+import '../../movies/presentation/views/top_rated_movies_view.dart';
 
 import '../../movies/presentation/views/movies_view.dart';
 
@@ -29,7 +33,29 @@ class AppRouter {
             path: moviesPath,
             pageBuilder: (context, state) =>
                 const NoTransitionPage(child: MoviesView()),
-            routes: [],
+            routes: [
+              GoRoute(
+                name: AppRoutes.movieDetailsRoute,
+                path: movieDetailsPath,
+                pageBuilder: (context, state) => CupertinoPage(
+                  child: MovieDetailsView(
+                    movieId: int.parse(state.pathParameters['movieId']!),
+                  ),
+                ),
+              ),
+              GoRoute(
+                name: AppRoutes.popularMoviesRoute,
+                path: popularMoviesPath,
+                pageBuilder: (context, state) =>
+                    const CupertinoPage(child: PopularMoviesView()),
+              ),
+              GoRoute(
+                name: AppRoutes.topRatedMoviesRoute,
+                path: topRatedMoviesPath,
+                pageBuilder: (context, state) =>
+                    const CupertinoPage(child: TopRatedMoviesView()),
+              ),
+            ],
           ),
         ],
       ),

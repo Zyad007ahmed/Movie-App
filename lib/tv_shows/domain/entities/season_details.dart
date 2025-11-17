@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/tv_shows/domain/entities/episode.dart';
+import 'episode.dart';
 
 class SeasonDetails extends Equatable{
   final List<Episode> episodes;

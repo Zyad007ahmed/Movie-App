@@ -1,4 +1,4 @@
-import 'package:movie_app/movies/domain/entities/review.dart';
+import '../../domain/entities/review.dart';
 
 import '../../../core/utils/functions.dart';
 

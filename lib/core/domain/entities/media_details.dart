@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/core/domain/entities/media.dart';
+import 'media.dart';
 
 import '../../../movies/domain/entities/cast.dart';
 import '../../../movies/domain/entities/review.dart';
