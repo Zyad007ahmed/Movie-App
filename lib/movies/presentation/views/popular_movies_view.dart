@@ -17,6 +17,8 @@ class PopularMoviesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    sl<PopularMoviesBloc>().add(GetPopularMoviesEvent());
+
     return Scaffold(
       appBar: const CustomAppBar(title: AppStrings.popularMovies),
       body: BlocBuilder<PopularMoviesBloc, PopularMoviesState>(

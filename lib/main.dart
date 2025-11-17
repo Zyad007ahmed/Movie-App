@@ -25,23 +25,23 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => sl<MoviesBloc>()..add(GetMoviesEvent()),
-        ),
-        BlocProvider(create: (context) => sl<MovieDetailsBloc>()),
-        BlocProvider(
-          create: (context) =>
-              sl<PopularMoviesBloc>()..add(GetPopularMoviesEvent()),
-        ),
-        BlocProvider(
-          create: (context) =>
-              sl<TopRatedMoviesBloc>()..add(GetTopRatedMoviesEvent()),
-        ),
+        _getMoviesBlocProvider(),
+        _getMovieDetailsBlocProvider(),
+        _getPopularMoviesBlocProvider(),
+        _getTopRatedMoviesBlocProvider(),
       ],
       child: const MyApp(),
     ),
   );
 }
+
+BlocProvider<TopRatedMoviesBloc> _getTopRatedMoviesBlocProvider() => BlocProvider(create: (context) => sl<TopRatedMoviesBloc>());
+
+BlocProvider<PopularMoviesBloc> _getPopularMoviesBlocProvider() => BlocProvider(create: (context) => sl<PopularMoviesBloc>());
+
+BlocProvider<MovieDetailsBloc> _getMovieDetailsBlocProvider() => BlocProvider(create: (context) => sl<MovieDetailsBloc>());
+
+BlocProvider<MoviesBloc> _getMoviesBlocProvider() => BlocProvider(create: (context) => sl<MoviesBloc>());
 
 void intializeServiceLocator() {
   ServiceLocator.init();

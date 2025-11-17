@@ -22,6 +22,8 @@ class MoviesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _requestMovies();
+
     return Scaffold(
       body: BlocBuilder<MoviesBloc, MoviesState>(
         builder: (context, state) {
@@ -45,6 +47,8 @@ class MoviesView extends StatelessWidget {
       ),
     );
   }
+
+  void _requestMovies() => sl<MoviesBloc>().add(GetMoviesEvent());
 }
 
 class MoviesWidget extends StatelessWidget {

@@ -17,6 +17,8 @@ class TopRatedMoviesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _requestTopRatedMovies();
+
     return Scaffold(
       appBar: const CustomAppBar(title: AppStrings.topRatedMovies),
       body: BlocBuilder<TopRatedMoviesBloc, TopRatedMoviesState>(
@@ -41,6 +43,9 @@ class TopRatedMoviesView extends StatelessWidget {
       ),
     );
   }
+
+  void _requestTopRatedMovies() =>
+      sl<TopRatedMoviesBloc>().add(GetTopRatedMoviesEvent());
 }
 
 class TopRatedMoviesWidget extends StatelessWidget {
