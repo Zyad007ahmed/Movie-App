@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/core/services/service_locator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../watchlist/presentation/controllers/watchlist_bloc/watchlist_bloc.dart';
+import '../../domain/entities/media.dart';
 import '../../domain/entities/media_details.dart';
 import '../../resources/app_colors.dart';
 import '../../resources/app_values.dart';
+import '../../utils/enums.dart';
 import 'slider_card_image.dart';
 
 class DetailsCard extends StatelessWidget {
@@ -101,15 +106,15 @@ class DetailsCard extends StatelessWidget {
   InkWell _getBookmark() {
     return InkWell(
       onTap: () {
-        // mediaDetails.isBookmarked
-        //     ? context.read<WatchlistBloc>().add(
-        //         RemoveWatchListItemEvent(mediaDetails.id!),
-        //       )
-        //     : context.read<WatchlistBloc>().add(
-        //         AddWatchListItemEvent(
-        //           media: Media.fromMediaDetails(mediaDetails),
-        //         ),
-        //       );
+        mediaDetails.isBookmarked
+            ? sl<WatchlistBloc>().add(
+                RemoveWatchListItemEvent(index: mediaDetails.id!),
+              )
+            : sl<WatchlistBloc>().add(
+                AddWatchListItemEvent(
+                  media: Media.fromMediaDetails(mediaDetails),
+                ),
+              );
       },
       child: Container(
         padding: const EdgeInsets.all(AppPadding.p8),
@@ -117,31 +122,31 @@ class DetailsCard extends StatelessWidget {
           shape: BoxShape.circle,
           color: AppColors.iconContainerColor,
         ),
-        // child: BlocConsumer<WatchlistBloc, WatchlistState>(
-        //   listener: (context, state) {
-        //     final action = state.actionStatus;
-        //     if (action == BookmarkStatus.added) {
-        //       mediaDetails.id = state.id;
-        //       mediaDetails.isBookmarked = true;
-        //     } else if (action == BookmarkStatus.removed) {
-        //       mediaDetails.id = null;
-        //       mediaDetails.isBookmarked = false;
-        //     } else if (action == BookmarkStatus.exists &&
-        //         state.id != -1) {
-        //       mediaDetails.id = state.id;
-        //       mediaDetails.isBookmarked = true;
-        //     }
-        //   },
-        //   builder: (context, state) {
-        //     return Icon(
-        //       Icons.bookmark_rounded,
-        //       color: mediaDetails.isBookmarked
-        //           ? AppColors.primary
-        //           : AppColors.secondaryText,
-        //       size: AppSize.s20,
-        //     );
-        //   },
-        // ),
+        child: BlocConsumer<WatchlistBloc, WatchlistState>(
+          listener: (context, state) {
+            final action = state.actionStatus;
+            if (action == BookmarkStatus.added) {
+              mediaDetails.id = state.id;
+              mediaDetails.isBookmarked = true;
+            } else if (action == BookmarkStatus.removed) {
+              mediaDetails.id = null;
+              mediaDetails.isBookmarked = false;
+            } else if (action == BookmarkStatus.exists &&
+                state.id != -1) {
+              mediaDetails.id = state.id;
+              mediaDetails.isBookmarked = true;
+            }
+          },
+          builder: (context, state) {
+            return Icon(
+              Icons.bookmark_rounded,
+              color: mediaDetails.isBookmarked
+                  ? AppColors.primary
+                  : AppColors.secondaryText,
+              size: AppSize.s20,
+            );
+          },
+        ),
       ),
     );
   }
@@ -202,9 +207,6 @@ class DetailsCard extends StatelessWidget {
       SliderCardImage(imageUrl: mediaDetails.backdropUrl);
 
   void _checkIfMovieBookmarked() {
-    //todo
-    // context.read<WatchlistBloc>().add(
-    //   CheckBookmarkEvent(tmdbId: mediaDetails.tmdbID),
-    // );
+    sl<WatchlistBloc>().add(CheckBookmarkEvent(tmdbId: mediaDetails.tmdbId));
   }
 }
