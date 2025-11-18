@@ -22,7 +22,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
   ) async {
     emit(state.copyWith(status: RequestStatus.loading));
 
-    final result = await _getMoviesUsecase(const NoParameters());
+    final result = await _getMoviesUsecase(noParametrs);
     
     result.fold(
       (l) =>

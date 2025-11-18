@@ -102,7 +102,6 @@ class DetailsCard extends StatelessWidget {
     );
   }
 
-  //todo
   InkWell _getBookmark() {
     return InkWell(
       onTap: () {
@@ -131,8 +130,7 @@ class DetailsCard extends StatelessWidget {
             } else if (action == BookmarkStatus.removed) {
               mediaDetails.id = null;
               mediaDetails.isBookmarked = false;
-            } else if (action == BookmarkStatus.exists &&
-                state.id != -1) {
+            } else if (action == BookmarkStatus.exists && state.id != -1) {
               mediaDetails.id = state.id;
               mediaDetails.isBookmarked = true;
             }
@@ -157,7 +155,7 @@ class DetailsCard extends StatelessWidget {
         onTap: () async {
           final url = Uri.parse(mediaDetails.trailerUrl);
           if (await canLaunchUrl(url)) {
-            await launchUrl(url);
+            await launchUrl(url, mode: LaunchMode.externalApplication);
           }
         },
         child: Container(

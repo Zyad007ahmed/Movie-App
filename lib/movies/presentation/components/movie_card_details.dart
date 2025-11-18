@@ -20,16 +20,9 @@ class MovieCardDetails extends StatelessWidget {
             style: textTheme.bodyLarge,
           ),
           const CircleDot(),
-          Text(
-            movieDetails.genres,
-            style: textTheme.bodyLarge,
-          ),
+          Text(movieDetails.genres, style: textTheme.bodyLarge),
           const CircleDot(),
-          Text(
-            movieDetails.runtime!,
-            style: textTheme.bodyLarge,
-          ),
-          const CircleDot(),
+          Text(movieDetails.runtime!, style: textTheme.bodyLarge),
         ],
       );
     } else {

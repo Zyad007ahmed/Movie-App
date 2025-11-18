@@ -1,0 +1,17 @@
+import 'package:dartz/dartz.dart';
+import 'package:movie_app/core/domain/usecase/base_use_case.dart';
+import 'package:movie_app/core/error/failure.dart';
+
+import '../../../core/domain/entities/media.dart';
+import '../repository/watchlist_repository.dart';
+
+class AddWatchlistItemUseCase extends BaseUseCase<int, Media> {
+  final WatchlistRepository _watchlistRepository;
+
+  AddWatchlistItemUseCase(this._watchlistRepository);
+
+  @override
+  Future<Either<Failure, int>> call(Media media) async {
+    return await _watchlistRepository.addWatchListItem(media);
+  }
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import '../../watchlist/presentation/views/watchlist_view.dart';
 import '../presentation/pages/main_page.dart';
 import 'app_routes.dart';
 import '../../movies/presentation/views/movie_details_view.dart';
@@ -56,6 +57,12 @@ class AppRouter {
                     const CupertinoPage(child: TopRatedMoviesView()),
               ),
             ],
+          ),
+          GoRoute(
+            name: AppRoutes.watchlistRoute,
+            path: watchlistPath,
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: WatchlistView()),
           ),
         ],
       ),

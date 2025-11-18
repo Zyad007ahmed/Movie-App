@@ -12,6 +12,7 @@ import 'watchlist/data/models/watchlist_item_model.dart';
 
 import 'core/resources/app_theme.dart';
 import 'core/services/service_locator.dart';
+import 'watchlist/presentation/controllers/watchlist_bloc/watchlist_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,10 +30,16 @@ void main() async {
         _getMovieDetailsBlocProvider(),
         _getPopularMoviesBlocProvider(),
         _getTopRatedMoviesBlocProvider(),
+        _getWatchlistBlocProvider(),
       ],
       child: const MyApp(),
     ),
   );
+}
+
+BlocProvider<WatchlistBloc> _getWatchlistBlocProvider() {
+  return BlocProvider(
+    create: (context) => sl<WatchlistBloc>());
 }
 
 BlocProvider<TopRatedMoviesBloc> _getTopRatedMoviesBlocProvider() => BlocProvider(create: (context) => sl<TopRatedMoviesBloc>());

@@ -7,7 +7,9 @@ abstract class BaseUseCase<T,P> {
 } 
 
 class NoParameters extends Equatable{
-  const NoParameters();
+  const NoParameters._internal();
   @override
   List<Object?> get props => [];
 }
+
+const noParametrs = NoParameters._internal();

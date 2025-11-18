@@ -6,9 +6,8 @@ import '../../../movies/domain/entities/review.dart';
 import '../../../tv_shows/domain/entities/episode.dart';
 import '../../../tv_shows/domain/entities/season.dart';
 
-// //ignore: must_be_immutable
 class MediaDetails extends Equatable{
-  final int? id;
+  int? id;
   final int tmdbId;
   final String title;
   final String posterUrl;
@@ -26,9 +25,9 @@ class MediaDetails extends Equatable{
   final List<Review>? reviews;
   final List<Season>? seasons;
   final List<Media> similar;
-  final bool isBookmarked;
+  bool isBookmarked;
 
-  const MediaDetails({
+  MediaDetails({
     this.id,
     required this.tmdbId,
     required this.title,
