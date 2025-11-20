@@ -1,8 +1,8 @@
 import '../../../core/domain/entities/media.dart';
 import '../../../core/utils/functions.dart';
 
-class TVShowModel extends Media {
-  const TVShowModel({
+class TvShowModel extends Media {
+  const TvShowModel({
     required super.tmdbId,
     required super.title,
     required super.posterUrl,
@@ -13,8 +13,8 @@ class TVShowModel extends Media {
     required super.isMovie,
   });
 
-  factory TVShowModel.fromJson(Map<String, dynamic> json) {
-    return TVShowModel(
+  factory TvShowModel.fromJson(Map<String, dynamic> json) {
+    return TvShowModel(
       tmdbId: json['id'],
       title: json['name'],
       posterUrl: getPosterUrl(json['poster_path']),

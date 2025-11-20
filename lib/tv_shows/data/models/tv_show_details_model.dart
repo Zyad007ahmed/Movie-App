@@ -6,8 +6,8 @@ import 'tv_show_model.dart';
 
 
 // ignore: must_be_immutable
-class TVShowDetailsModel extends MediaDetails {
-  TVShowDetailsModel({
+class TvShowDetailsModel extends MediaDetails {
+  TvShowDetailsModel({
     required super.tmdbId,
     required super.title,
     required super.posterUrl,
@@ -24,8 +24,8 @@ class TVShowDetailsModel extends MediaDetails {
     required super.similar,
   });
 
-  factory TVShowDetailsModel.fromJson(Map<String, dynamic> json) {
-    return TVShowDetailsModel(
+  factory TvShowDetailsModel.fromJson(Map<String, dynamic> json) {
+    return TvShowDetailsModel(
       tmdbId: json['id'],
       title: json['name'],
       posterUrl: getPosterUrl(json['poster_path']),
@@ -44,8 +44,8 @@ class TVShowDetailsModel extends MediaDetails {
             .where((e) => e['name'] != 'Specials')
             .map((e) => SeasonModel.fromJson(e))),
       ),
-      similar: List<TVShowModel>.from((json['similar']['results'] as List)
-          .map((e) => TVShowModel.fromJson(e))),
+      similar: List<TvShowModel>.from((json['similar']['results'] as List)
+          .map((e) => TvShowModel.fromJson(e))),
     );
   }
 }

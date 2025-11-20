@@ -1,0 +1,48 @@
+import 'package:flutter/material.dart';
+import '../../../core/presentation/components/circle_dot.dart';
+
+import '../../../core/resources/app_strings.dart';
+import '../../domain/entities/episode.dart';
+import '../../domain/entities/season.dart';
+
+class TvShowCardDetails extends StatelessWidget {
+  const TvShowCardDetails({
+    super.key,
+    required this.lastEpisode,
+    required this.genres,
+    required this.seasons,
+  });
+
+  final Episode lastEpisode;
+  final String genres;
+  final List<Season> seasons;
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    if (lastEpisode.number != 0 &&
+        lastEpisode.season != 0 &&
+        genres.isNotEmpty &&
+        seasons.isNotEmpty) {
+      return Row(
+        children: [
+          Text(
+            'S${lastEpisode.season}E${lastEpisode.number}',
+            style: textTheme.bodyLarge,
+          ),
+          const CircleDot(),
+
+          Text(genres, style: textTheme.bodyLarge),
+          const CircleDot(),
+          Text(_getNbOfSeasons(seasons.length), style: textTheme.bodyLarge),
+        ],
+      );
+    } else {
+      return const SizedBox();
+    }
+  }
+}
+
+String _getNbOfSeasons(int seasons) {
+  return '$seasons ${seasons == 1 ? AppStrings.season : AppStrings.seasons}';
+}
