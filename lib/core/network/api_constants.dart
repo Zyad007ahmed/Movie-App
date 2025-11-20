@@ -25,4 +25,19 @@ class ApiConstants {
   static String topRatedMoviesPath = '/movie/top_rated';
   static String movieDetailsPath(int movieId) => '/movie/$movieId';
 
+  // tv shows paths
+  static String onAirTvShowsPath = '/tv/on_the_air';
+  static String popularTvShowsPath = '/tv/popular';
+  static String topRatedTvShowsPath = '/tv/top_rated';
+  static String tvShowDetailsPath(int tvShowId) => '/tv/$tvShowId';
+  static String seasonDetailsPath({
+    required int id,
+    required int seasonNumber,
+  }) {
+    return '/tv/$id/season/$seasonNumber';
+  }
+
+  // search path
+  static String searchPath = '/search/multi';
+
 }

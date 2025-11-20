@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../../../core/presentation/components/error_screen.dart';
-import '../../../core/presentation/components/loading_indicator.dart';
-import '../../../core/utils/enums.dart';
-import '../controllers/movies_bloc/movies_bloc.dart';
 
 import '../../../core/domain/entities/media.dart';
 import '../../../core/presentation/components/custom_slider.dart';
+import '../../../core/presentation/components/error_screen.dart';
+import '../../../core/presentation/components/loading_indicator.dart';
 import '../../../core/presentation/components/section_header.dart';
 import '../../../core/presentation/components/section_listview.dart';
 import '../../../core/presentation/components/section_listview_card.dart';
@@ -16,6 +14,8 @@ import '../../../core/resources/app_routes.dart';
 import '../../../core/resources/app_strings.dart';
 import '../../../core/resources/app_values.dart';
 import '../../../core/services/service_locator.dart';
+import '../../../core/utils/enums.dart';
+import '../controllers/movies_bloc/movies_bloc.dart';
 
 class MoviesView extends StatelessWidget {
   const MoviesView({super.key});
@@ -39,7 +39,7 @@ class MoviesView extends StatelessWidget {
             case RequestStatus.error:
               return ErrorScreen(
                 onTryAgainPressed: () {
-                  sl<MoviesBloc>().add(GetMoviesEvent());
+                  _requestMovies();
                 },
               );
           }

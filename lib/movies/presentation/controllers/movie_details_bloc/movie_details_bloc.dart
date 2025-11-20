@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+
 import '../../../../core/domain/entities/media_details.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../domain/usecases/get_movie_details_usecase.dart';

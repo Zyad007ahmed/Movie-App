@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/services/service_locator.dart';
+import '../../services/service_locator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../watchlist/presentation/controllers/watchlist_bloc/watchlist_bloc.dart';

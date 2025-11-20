@@ -181,7 +181,7 @@ String getElapsedTime(String date) {
   }
 }
 
-void getCustomBottomSheet({
+void showCustomBottomSheet({
   required BuildContext context,
   required Widget child,
 }) {

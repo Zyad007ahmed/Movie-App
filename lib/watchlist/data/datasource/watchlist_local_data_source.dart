@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
-import 'package:movie_app/core/error/exceptions.dart';
-import 'package:movie_app/watchlist/data/models/watchlist_item_model.dart';
+import '../../../core/error/exceptions.dart';
+import '../models/watchlist_item_model.dart';
 
 abstract class WatchlistLocalDataSource {
   List<WatchlistItemModel> getWatchListItems();

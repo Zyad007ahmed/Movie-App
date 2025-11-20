@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/core/domain/usecase/base_use_case.dart';
-import 'package:movie_app/core/utils/enums.dart';
+import '../../../../core/domain/usecase/base_use_case.dart';
+import '../../../../core/utils/enums.dart';
 
 import '../../../../core/domain/entities/media.dart';
 import '../../../domain/usecases/add_watchlist_item_use_case.dart';

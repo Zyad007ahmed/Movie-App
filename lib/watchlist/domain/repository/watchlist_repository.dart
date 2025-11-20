@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:movie_app/core/domain/entities/media.dart';
+import '../../../core/domain/entities/media.dart';
 
 import '../../../core/error/failure.dart';
 

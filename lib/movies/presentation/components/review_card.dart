@@ -102,7 +102,7 @@ class ReviewCard extends StatelessWidget {
   }
 
   void _onCardTap(BuildContext context) {
-    return getCustomBottomSheet(
+    return showCustomBottomSheet(
       context: context,
       child: ReviewContent(review: review),
     );

@@ -6,6 +6,7 @@ import '../../../movies/domain/entities/review.dart';
 import '../../../tv_shows/domain/entities/episode.dart';
 import '../../../tv_shows/domain/entities/season.dart';
 
+// ignore: must_be_immutable
 class MediaDetails extends Equatable{
   int? id;
   final int tmdbId;

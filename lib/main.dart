@@ -4,10 +4,12 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'core/resources/app_router.dart';
 import 'core/resources/app_strings.dart';
-import 'movies/presentation/controllers/movie_details_bloc/movie_details_bloc.dart';
 import 'movies/presentation/controllers/movies_bloc/movies_bloc.dart';
 import 'movies/presentation/controllers/popular_movies_bloc/popular_movies_bloc.dart';
 import 'movies/presentation/controllers/top_rated_movies_bloc/top_rated_movies_bloc.dart';
+import 'tv_shows/presentation/controllers/popular_tv_shows_bloc/popular_tv_shows_bloc.dart';
+import 'tv_shows/presentation/controllers/top_rated_tv_shows_bloc/top_rated_tv_shows_bloc.dart';
+import 'tv_shows/presentation/controllers/tv_shows_bloc/tv_shows_bloc.dart';
 import 'watchlist/data/models/watchlist_item_model.dart';
 
 import 'core/resources/app_theme.dart';
@@ -27,28 +29,44 @@ void main() async {
     MultiBlocProvider(
       providers: [
         _getMoviesBlocProvider(),
-        _getMovieDetailsBlocProvider(),
         _getPopularMoviesBlocProvider(),
         _getTopRatedMoviesBlocProvider(),
         _getWatchlistBlocProvider(),
+        _getTvShowsBlocProvider(),
+        _getTopRatedTvShowsBlocProvider(),
+        _getPopularTvShowsBlocProvider(),
       ],
       child: const MyApp(),
     ),
   );
 }
 
-BlocProvider<WatchlistBloc> _getWatchlistBlocProvider() {
+BlocProvider<PopularTvShowsBloc> _getPopularTvShowsBlocProvider() {
   return BlocProvider(
-    create: (context) => sl<WatchlistBloc>());
+    create: (context) =>
+        sl<PopularTvShowsBloc>());
 }
 
-BlocProvider<TopRatedMoviesBloc> _getTopRatedMoviesBlocProvider() => BlocProvider(create: (context) => sl<TopRatedMoviesBloc>());
+BlocProvider<TopRatedTvShowsBloc> _getTopRatedTvShowsBlocProvider() {
+  return BlocProvider(
+    create: (context) =>
+        sl<TopRatedTvShowsBloc>());
+}
 
-BlocProvider<PopularMoviesBloc> _getPopularMoviesBlocProvider() => BlocProvider(create: (context) => sl<PopularMoviesBloc>());
+BlocProvider<TvShowsBloc> _getTvShowsBlocProvider() =>
+    BlocProvider(create: (context) => sl<TvShowsBloc>());
 
-BlocProvider<MovieDetailsBloc> _getMovieDetailsBlocProvider() => BlocProvider(create: (context) => sl<MovieDetailsBloc>());
+BlocProvider<WatchlistBloc> _getWatchlistBlocProvider() =>
+    BlocProvider(create: (context) => sl<WatchlistBloc>());
 
-BlocProvider<MoviesBloc> _getMoviesBlocProvider() => BlocProvider(create: (context) => sl<MoviesBloc>());
+BlocProvider<TopRatedMoviesBloc> _getTopRatedMoviesBlocProvider() =>
+    BlocProvider(create: (context) => sl<TopRatedMoviesBloc>());
+
+BlocProvider<PopularMoviesBloc> _getPopularMoviesBlocProvider() =>
+    BlocProvider(create: (context) => sl<PopularMoviesBloc>());
+
+BlocProvider<MoviesBloc> _getMoviesBlocProvider() =>
+    BlocProvider(create: (context) => sl<MoviesBloc>());
 
 void intializeServiceLocator() {
   ServiceLocator.init();

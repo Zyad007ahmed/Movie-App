@@ -31,9 +31,7 @@ class TopRatedMoviesView extends StatelessWidget {
             case GetAllRequestStatus.error:
               return ErrorScreen(
                 onTryAgainPressed: () {
-                  context.read<TopRatedMoviesBloc>().add(
-                    GetTopRatedMoviesEvent(),
-                  );
+                  _requestTopRatedMovies();
                 },
               );
             case GetAllRequestStatus.fetchMoreError:
@@ -43,9 +41,14 @@ class TopRatedMoviesView extends StatelessWidget {
       ),
     );
   }
+}
 
-  void _requestTopRatedMovies() =>
-      sl<TopRatedMoviesBloc>().add(GetTopRatedMoviesEvent());
+void _requestTopRatedMovies({bool isFetchMore = false}) {
+  if (isFetchMore) {
+    sl<TopRatedMoviesBloc>().add(FetchMoreTopRatedMoviesEvent());
+  } else {
+    sl<TopRatedMoviesBloc>().add(GetTopRatedMoviesEvent());
+  }
 }
 
 class TopRatedMoviesWidget extends StatelessWidget {
@@ -65,7 +68,7 @@ class TopRatedMoviesWidget extends StatelessWidget {
         }
       },
       addEvent: () {
-        sl<TopRatedMoviesBloc>().add(FetchMoreTopRatedMoviesEvent());
+        _requestTopRatedMovies(isFetchMore: true);
       },
     );
   }

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:movie_app/core/domain/usecase/base_use_case.dart';
-import 'package:movie_app/core/error/failure.dart';
+import '../../../core/domain/usecase/base_use_case.dart';
+import '../../../core/error/failure.dart';
 
 import '../../../core/domain/entities/media.dart';
 import '../repository/watchlist_repository.dart';

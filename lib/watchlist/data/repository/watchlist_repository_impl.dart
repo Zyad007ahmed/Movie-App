@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:movie_app/core/domain/entities/media.dart';
-import 'package:movie_app/core/error/exceptions.dart';
-import 'package:movie_app/core/error/failure.dart';
-import 'package:movie_app/core/resources/app_strings.dart';
-import 'package:movie_app/watchlist/data/datasource/watchlist_local_data_source.dart';
-import 'package:movie_app/watchlist/data/models/watchlist_item_model.dart';
+import '../../../core/domain/entities/media.dart';
+import '../../../core/error/exceptions.dart';
+import '../../../core/error/failure.dart';
+import '../../../core/resources/app_strings.dart';
+import '../datasource/watchlist_local_data_source.dart';
+import '../models/watchlist_item_model.dart';
 
 import '../../domain/repository/watchlist_repository.dart';
 

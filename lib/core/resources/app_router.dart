@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import '../../tv_shows/presentation/views/popular_tv_shows_view.dart';
+import '../../tv_shows/presentation/views/top_rated_tv_shows_view.dart';
+import '../../tv_shows/presentation/views/tv_show_details_view.dart';
+import '../../tv_shows/presentation/views/tv_shows_view.dart';
 import '../../watchlist/presentation/views/watchlist_view.dart';
 import '../presentation/pages/main_page.dart';
 import 'app_routes.dart';
@@ -15,8 +19,8 @@ const String popularMoviesPath = 'popularMovies';
 const String topRatedMoviesPath = 'topRatedMovies';
 const String tvShowsPath = '/tvShows';
 const String tvShowDetailsPath = 'tvShowDetails/:tvShowId';
-const String popularTVShowsPath = 'popularTVShows';
-const String topRatedTVShowsPath = 'topRatedTVShows';
+const String popularTvShowsPath = 'popularTvShows';
+const String topRatedTvShowsPath = 'topRatedTvShows';
 const String searchPath = '/search';
 const String watchlistPath = '/watchlist';
 
@@ -55,6 +59,35 @@ class AppRouter {
                 path: topRatedMoviesPath,
                 pageBuilder: (context, state) =>
                     const CupertinoPage(child: TopRatedMoviesView()),
+              ),
+            ],
+          ),
+          GoRoute(
+            name: AppRoutes.tvShowsRoute,
+            path: tvShowsPath,
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: TvShowsView()),
+            routes: [
+              GoRoute(
+                name: AppRoutes.tvShowDetailsRoute,
+                path: tvShowDetailsPath,
+                pageBuilder: (context, state) => CupertinoPage(
+                  child: TvShowDetailsView(
+                    tvShowId: int.parse(state.pathParameters['tvShowId']!),
+                  ),
+                ),
+              ),
+              GoRoute(
+                name: AppRoutes.topRatedTvShowsRoute,
+                path: topRatedTvShowsPath,
+                pageBuilder: (context, state) =>
+                    const CupertinoPage(child: TopRatedTvShowsView()),
+              ),
+              GoRoute(
+                name: AppRoutes.popularTvShowsRoute,
+                path: popularTvShowsPath,
+                pageBuilder: (context, state) =>
+                    const CupertinoPage(child: PopularTvShowsView()),
               ),
             ],
           ),

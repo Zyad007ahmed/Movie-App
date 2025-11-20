@@ -17,7 +17,7 @@ class PopularMoviesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    sl<PopularMoviesBloc>().add(GetPopularMoviesEvent());
+    _requestPopularMovies();
 
     return Scaffold(
       appBar: const CustomAppBar(title: AppStrings.popularMovies),
@@ -32,13 +32,21 @@ class PopularMoviesView extends StatelessWidget {
             case GetAllRequestStatus.error:
               return ErrorScreen(
                 onTryAgainPressed: () {
-                  sl<PopularMoviesBloc>().add(GetPopularMoviesEvent());
+                  _requestPopularMovies();
                 },
               );
           }
         },
       ),
     );
+  }
+}
+
+void _requestPopularMovies({bool isFetchMore = false}) {
+  if (isFetchMore) {
+    sl<PopularMoviesBloc>().add(FetchMorePopularMoviesEvent());
+  } else {
+    sl<PopularMoviesBloc>().add(GetPopularMoviesEvent());
   }
 }
 
@@ -59,7 +67,7 @@ class PopularMoviesWidget extends StatelessWidget {
         }
       },
       addEvent: () {
-        sl<PopularMoviesBloc>().add(FetchMorePopularMoviesEvent());
+        _requestPopularMovies(isFetchMore: true);
       },
     );
   }

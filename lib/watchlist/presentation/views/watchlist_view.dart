@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/services/service_locator.dart';
+import '../../../core/services/service_locator.dart';
 
 import '../../../core/domain/entities/media.dart';
 import '../../../core/presentation/components/custom_app_bar.dart';
@@ -18,12 +18,12 @@ class WatchlistView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _requestWhatchListItems();
     return Scaffold(
       appBar: const CustomAppBar(title: AppStrings.watchlist),
       body: BlocBuilder<WatchlistBloc, WatchlistState>(
         builder: (context, state) {
           if (state.status == WatchlistRequestStatus.loading) {
-            _requestWhatchListItems();
             return const LoadingIndicator();
           } else if (state.status == WatchlistRequestStatus.loaded) {
             return WatchlistWidget(items: state.items);
@@ -32,7 +32,7 @@ class WatchlistView extends StatelessWidget {
           } else {
             return ErrorScreen(
               onTryAgainPressed: () {
-                sl<WatchlistBloc>().add(GetWatchListItemsEvent());
+                _requestWhatchListItems();
               },
             );
           }

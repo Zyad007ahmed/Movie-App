@@ -22,34 +22,38 @@ import '../controllers/movie_details_bloc/movie_details_bloc.dart';
 class MovieDetailsView extends StatelessWidget {
   final int movieId;
 
-  const MovieDetailsView({super.key, required this.movieId});
+  MovieDetailsView({super.key, required this.movieId});
+
+  final bloc = MovieDetailsBloc(sl());
 
   @override
   Widget build(BuildContext context) {
     _requestMovieDetails();
 
     return Scaffold(
-      body: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
-        builder: (context, state) {
-          switch (state.status) {
-            case RequestStatus.loading:
-              return const LoadingIndicator();
-            case RequestStatus.loaded:
-              return MovieDetailsWidget(movieDetails: state.movieDetails!);
-            case RequestStatus.error:
-              return ErrorScreen(
-                onTryAgainPressed: () {
-                  _requestMovieDetails();
-                },
-              );
-          }
-        },
+      body: BlocProvider(
+        create: (context) => bloc,
+        child: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
+          builder: (context, state) {
+            switch (state.status) {
+              case RequestStatus.loading:
+                return const LoadingIndicator();
+              case RequestStatus.loaded:
+                return MovieDetailsWidget(movieDetails: state.movieDetails!);
+              case RequestStatus.error:
+                return ErrorScreen(
+                  onTryAgainPressed: () {
+                    _requestMovieDetails();
+                  },
+                );
+            }
+          },
+        ),
       ),
     );
   }
 
-  void _requestMovieDetails() =>
-      sl<MovieDetailsBloc>().add(GetMovieDetailsEvent(movieId));
+  void _requestMovieDetails() => bloc.add(GetMovieDetailsEvent(movieId));
 }
 
 class MovieDetailsWidget extends StatelessWidget {
