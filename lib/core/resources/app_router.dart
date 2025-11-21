@@ -96,7 +96,7 @@ class AppRouter {
             name: AppRoutes.watchlistRoute,
             path: watchlistPath,
             pageBuilder: (context, state) =>
-                const NoTransitionPage(child: WatchlistView()),
+                NoTransitionPage(child: WatchlistView()),
           ),
           GoRoute(
             name: AppRoutes.searchRoute,

@@ -14,35 +14,38 @@ import '../components/empty_watchlist_text.dart';
 import '../controllers/watchlist_bloc/watchlist_bloc.dart';
 
 class WatchlistView extends StatelessWidget {
-  const WatchlistView({super.key});
+  WatchlistView({super.key});
+
+  final bloc = WatchlistBloc(sl(), sl(), sl(), sl());
 
   @override
   Widget build(BuildContext context) {
     _requestWhatchListItems();
     return Scaffold(
       appBar: const CustomAppBar(title: AppStrings.watchlist),
-      body: BlocBuilder<WatchlistBloc, WatchlistState>(
-        builder: (context, state) {
-          if (state.status == WatchlistRequestStatus.loading) {
-            return const LoadingIndicator();
-          } else if (state.status == WatchlistRequestStatus.loaded) {
-            return WatchlistWidget(items: state.items);
-          } else if (state.status == WatchlistRequestStatus.empty) {
-            return const EmptyWatchlistText();
-          } else {
-            return ErrorScreen(
-              onTryAgainPressed: () {
-                _requestWhatchListItems();
-              },
-            );
-          }
-        },
+      body: BlocProvider(
+        create: (context) => bloc,
+        child: BlocBuilder<WatchlistBloc, WatchlistState>(
+          builder: (context, state) {
+            return switch (state.status) {
+              WatchlistRequestStatus.loading => const LoadingIndicator(),
+              WatchlistRequestStatus.loaded => WatchlistWidget(
+                items: state.items,
+              ),
+              WatchlistRequestStatus.empty => const EmptyWatchlistText(),
+              WatchlistRequestStatus.error => ErrorScreen(
+                onTryAgainPressed: () {
+                  _requestWhatchListItems();
+                },
+              ),
+            };
+          },
+        ),
       ),
     );
   }
 
-  void _requestWhatchListItems() =>
-      sl<WatchlistBloc>().add(GetWatchListItemsEvent());
+  void _requestWhatchListItems() => bloc.add(GetWatchListItemsEvent());
 }
 
 class WatchlistWidget extends StatelessWidget {

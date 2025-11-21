@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
+
 import '../../../core/error/exceptions.dart';
 import '../../../core/network/api_constants.dart';
 import '../../../core/network/error_message_model.dart';
 import '../../domain/entities/search_result_item.dart';
-
 import '../models/search_result_item_model.dart';
 
 abstract class SearchRemoteDataSource {
