@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import '../../search/presentation/views/search_view.dart';
 import '../../tv_shows/presentation/views/popular_tv_shows_view.dart';
 import '../../tv_shows/presentation/views/top_rated_tv_shows_view.dart';
 import '../../tv_shows/presentation/views/tv_show_details_view.dart';
@@ -96,6 +97,12 @@ class AppRouter {
             path: watchlistPath,
             pageBuilder: (context, state) =>
                 const NoTransitionPage(child: WatchlistView()),
+          ),
+          GoRoute(
+            name: AppRoutes.searchRoute,
+            path: searchPath,
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: SearchView()),
           ),
         ],
       ),

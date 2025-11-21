@@ -1,6 +1,5 @@
-import '../../domain/entities/review.dart';
-
 import '../../../core/utils/functions.dart';
+import '../../domain/entities/review.dart';
 
 class ReviewModel extends Review {
   const ReviewModel({

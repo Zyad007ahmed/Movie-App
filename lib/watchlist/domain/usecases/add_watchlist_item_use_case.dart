@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import '../../../core/domain/usecase/base_use_case.dart';
-import '../../../core/error/failure.dart';
 
 import '../../../core/domain/entities/media.dart';
+import '../../../core/domain/usecase/base_use_case.dart';
+import '../../../core/error/failure.dart';
 import '../repository/watchlist_repository.dart';
 
 class AddWatchlistItemUseCase extends BaseUseCase<int, Media> {

@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../../../core/domain/entities/media.dart';
 import '../../../../core/domain/usecase/base_use_case.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../domain/usecases/get_movies_usecase.dart';
-
-import '../../../../core/domain/entities/media.dart';
 
 part 'movies_event.dart';
 part 'movies_state.dart';

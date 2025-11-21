@@ -1,11 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
+
+import '../../search/data/datasource/search_remote_data_source.dart';
+import '../../search/data/repository/search_repository_impl.dart';
+import '../../search/domain/repository/search_repository.dart';
+import '../../search/domain/usecases/search_usecase.dart';
+import '../../search/presentation/controllers/search_bloc/search_bloc.dart';
 import '../../watchlist/data/datasource/watchlist_local_data_source.dart';
 import '../../watchlist/data/models/watchlist_item_model.dart';
 import '../../watchlist/data/repository/watchlist_repository_impl.dart';
 import '../../watchlist/domain/usecases/get_watchlist_items_use_case.dart';
-
 import '../../movies/data/datasource/movies_remote_data_source.dart';
 import '../../movies/data/repository/movies_repository_impl.dart';
 import '../../movies/domain/repository/movies_repository.dart';
@@ -64,6 +69,9 @@ class ServiceLocator {
     sl.registerLazySingleton<TvShowsRemoteDataSource>(
       () => TvShowsRemoteDataSourceImpl(sl()),
     );
+    sl.registerLazySingleton<SearchRemoteDataSource>(
+      () => SearchRemoteDataSourceImpl(sl()),
+    );
 
     // Repository
     sl.registerLazySingleton<MoviesRepository>(
@@ -74,6 +82,9 @@ class ServiceLocator {
     );
     sl.registerLazySingleton<TvShowsRepository>(
       () => TvShowsRepositoryImpl(sl()),
+    );
+    sl.registerLazySingleton<SearchRepository>(
+      () => SearchRepositoryImpl(sl()),
     );
 
     // Use Cases
@@ -93,6 +104,8 @@ class ServiceLocator {
     sl.registerLazySingleton(() => GetSeasonDetailsUsecase(sl()));
     sl.registerLazySingleton(() => GetAllPopularTvShowsUsecase(sl()));
     sl.registerLazySingleton(() => GetAllTopRatedTvShowsUsecase(sl()));
+    // search
+    sl.registerLazySingleton(() => SearchUsecase(sl()));
 
     // Bloc
     // movies feature
@@ -104,8 +117,9 @@ class ServiceLocator {
     sl.registerLazySingleton(() => TvShowDetailsBloc(sl(), sl()));
     sl.registerLazySingleton(() => TopRatedTvShowsBloc(sl()));
     sl.registerLazySingleton(() => PopularTvShowsBloc(sl()));
-
     // watchlist feature
     sl.registerLazySingleton(() => WatchlistBloc(sl(), sl(), sl(), sl()));
+    // search
+    sl.registerLazySingleton(() => SearchBloc(sl()));
   }
 }

@@ -9,10 +9,7 @@ import 'image_with_shimmer.dart';
 class SectionListViewCard extends StatelessWidget {
   final Media media;
 
-  const SectionListViewCard({
-    required this.media,
-    super.key,
-  });
+  const SectionListViewCard({required this.media, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +21,7 @@ class SectionListViewCard extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              navigateToDetailsView(context, media);
+              navigateToDetailsView(context, media.tmdbId, media.isMovie);
             },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(AppSize.s8),
@@ -48,12 +45,9 @@ class SectionListViewCard extends StatelessWidget {
                 color: AppColors.ratingIconColor,
                 size: AppSize.s18,
               ),
-              Text(
-                '${media.voteAverage}/10',
-                style: textTheme.bodySmall,
-              ),
+              Text('${media.voteAverage}/10', style: textTheme.bodySmall),
             ],
-          )
+          ),
         ],
       ),
     );

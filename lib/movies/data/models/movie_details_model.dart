@@ -1,5 +1,4 @@
 import '../../../core/domain/entities/media_details.dart';
-
 import '../../../core/utils/functions.dart';
 import 'cast_model.dart';
 import 'movie_model.dart';

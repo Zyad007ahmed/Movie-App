@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../core/domain/entities/media.dart';
 import '../../../core/presentation/components/custom_app_bar.dart';
 import '../../../core/presentation/components/error_screen.dart';

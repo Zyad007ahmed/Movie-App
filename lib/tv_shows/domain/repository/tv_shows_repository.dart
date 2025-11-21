@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
+
 import '../../../core/domain/entities/media.dart';
 import '../../../core/domain/entities/media_details.dart';
+import '../../../core/error/failure.dart';
 import '../entities/season_details.dart';
 import '../usecases/get_season_details_usecase.dart';
-
-import '../../../core/error/failure.dart';
 
 abstract class TvShowsRepository {
   Future<Either<Failure, List<List<Media>>>> getTvShows();

@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import '../../../../core/domain/usecase/base_use_case.dart';
-import '../../../../core/utils/enums.dart';
 
 import '../../../../core/domain/entities/media.dart';
+import '../../../../core/domain/usecase/base_use_case.dart';
+import '../../../../core/utils/enums.dart';
 import '../../../domain/usecases/add_watchlist_item_use_case.dart';
 import '../../../domain/usecases/get_watchlist_items_use_case.dart';
 import '../../../domain/usecases/is_bookmarked_use_case.dart';

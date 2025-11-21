@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../services/service_locator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../watchlist/presentation/controllers/watchlist_bloc/watchlist_bloc.dart';
@@ -8,6 +7,7 @@ import '../../domain/entities/media.dart';
 import '../../domain/entities/media_details.dart';
 import '../../resources/app_colors.dart';
 import '../../resources/app_values.dart';
+import '../../services/service_locator.dart';
 import '../../utils/enums.dart';
 import 'slider_card_image.dart';
 

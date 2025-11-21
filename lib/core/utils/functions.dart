@@ -198,16 +198,16 @@ void showCustomBottomSheet({
   );
 }
 
-void navigateToDetailsView(BuildContext context, Media media) {
-  if (media.isMovie) {
+void navigateToDetailsView(BuildContext context, int tmdbId, bool isMovie) {
+  if (isMovie) {
     context.pushNamed(
       AppRoutes.movieDetailsRoute,
-      pathParameters: {'movieId': media.tmdbId.toString()},
+      pathParameters: {'movieId': tmdbId.toString()},
     );
   } else {
     context.pushNamed(
       AppRoutes.tvShowDetailsRoute,
-      pathParameters: {'tvShowId': media.tmdbId.toString()},
+      pathParameters: {'tvShowId': tmdbId.toString()},
     );
   }
 }
