@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import '../../../../core/utils/enums.dart';
 
 import '../../../../core/domain/entities/media.dart';
+import '../../../../core/utils/enums.dart';
 import '../../../domain/usecases/get_all_top_rated_tv_shows_usecase.dart';
 
 part 'top_rated_tv_shows_event.dart';

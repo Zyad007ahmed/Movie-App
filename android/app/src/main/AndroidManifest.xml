@@ -12,7 +12,7 @@
     </queries>
 
     <application
-        android:label="movie_app"
+        android:label="Movies App"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

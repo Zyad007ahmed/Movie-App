@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import '../../../core/error/failure.dart';
-import '../repository/tv_shows_repository.dart';
 
 import '../../../core/domain/entities/media.dart';
 import '../../../core/domain/usecase/base_use_case.dart';
+import '../../../core/error/failure.dart';
+import '../repository/tv_shows_repository.dart';
 
 class GetAllTopRatedTvShowsUsecase extends BaseUseCase<List<Media>, int> {
   final TvShowsRepository _tvShowsRepository;
